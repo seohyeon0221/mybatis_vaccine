@@ -18,6 +18,7 @@ public class ReservationController {
         return "new";
     }
 
+    //새로운 예약 등록
     @PostMapping("/reservation")
     public String newReservation(ReservationDTO dto){
         reservationService.save(dto);
