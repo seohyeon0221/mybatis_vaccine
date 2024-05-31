@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @ToString
 @Getter
@@ -12,8 +16,9 @@ import lombok.ToString;
 public class ReservationDTO {
     private Long resv_no;
     private String jumin;
-    private HostCode host_code;
+    private String host_code;
     private String resv_date;
     private String resv_time;
     private String v_code;
+
 }

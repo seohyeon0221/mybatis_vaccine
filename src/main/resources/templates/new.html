@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-새로운 예약 등록 페이지
+<form action="/reservation" method="post">
+    <!--    예약번호: <input type="text" name="resv_no" readonly><br>-->
+    주민번호: <input type="text" name="jumin"><br>
+    병원코드: <input type="text" name="host_code"><br>
+    예약날짜: <input type="text" name="resv_date"><br>
+    예약시간: <input type="text" name="resv_time"><br>
+    백신코드: <input type="text" name="v_code"><br>
+    <input type="submit" value="작성">
+</form>
 </body>
 </html>
