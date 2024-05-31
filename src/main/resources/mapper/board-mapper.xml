@@ -8,4 +8,10 @@
         VALUES(#{dto.jumin}, #{dto.host_code}, TO_DATE(#{dto.resv_date}, 'YYYYMMDD'),
         CAST(#{dto.resv_time} AS TIME), #{dto.v_code})
     </insert>
+    <select id="findAll" resultType="map">
+        SELECT h.host_addr, COUNT(v.resv_no) as count,
+        (SELECT COUNT(resv_no) FROM vaccresv) as total_count
+        FROM vaccresv v LEFT JOIN hospital h ON v.host_code = h.host_code
+        GROUP BY h.host_addr
+    </select>
 </mapper>
