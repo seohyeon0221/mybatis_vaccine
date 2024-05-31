@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" th:src="@{/js/check.js}"></script>
 </head>
 <body>
-<form action="/reservation" method="post">
+<form action="/reservation" method="post" >
     <!--    예약번호: <input type="text" name="resv_no" readonly><br>-->
     주민번호: <input type="text" name="jumin"><br>
-    백신코드: <select name="v_code">
+    백신코드: <select name="v_code" >
+            <option value="none">=== 선택 하세요 ===</option>
             <option value="V001">A_백신</option>
             <option value="V002">B_백신</option>
             <option value="V003">C_백신</option>
@@ -20,7 +22,8 @@
     <input type="radio" name="host_code" value="H004"> 병원_라<br>
     예약날짜: <input type="text" name="resv_date"><br>
     예약시간: <input type="text" name="resv_time"><br>
-    <input type="submit" value="작성">
+    <input type="submit" value="저장" class="btn btn-primary" onclick="check()">
+    <input type="button" value="다시" class="btn btn-primary" onclick="res()">
 </form>
 </body>
 </html>
