@@ -30,8 +30,8 @@ public class ReservationService {
             case "resv_no":
                 dtoList = mapper.findByResvNo(keyword);
                 break;
-            case "jumin":
-                dtoList = mapper.findByJumin(keyword);
+            case "name":
+                dtoList = mapper.findByName(keyword);
         }
         return dtoList;
     }

@@ -58,9 +58,9 @@ public class ReservationController {
             String jumin = (String) genderList.get("jumin");
             char genderCode = jumin.charAt(7);
             String gender = "";
-            if(genderCode =='1'){
+            if(genderCode =='1' || genderCode =='3'){
                 gender = "남";
-            }else if(genderCode == '2'){
+            }else if(genderCode == '2' || genderCode =='4'){
                 gender = "여";
             }
             genderList.put("gender", gender);

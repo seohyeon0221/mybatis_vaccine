@@ -18,5 +18,5 @@ public interface BoardMapper {
 
     List<Map<String, Object>> findByResvNo(@Param("keyword")String keyword);
 
-    List<Map<String, Object>> findByJumin(@Param("keyword")String keyword);
+    List<Map<String, Object>> findByName(@Param("keyword")String keyword);
 }
