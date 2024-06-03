@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<h1>백신예약조회</h1>
+
+<!-- 검색 폼 -->
+<form th:action="@{/search}" method="get" id="searchForm" th:classappend="${dtoList != null}">
+    <select name="type">
+        <option selected value=""> 검색 내용 선택</option>
+        <option value="resv_no">예약번호</option>
+        <option value="jumin">주민번호</option>
+    </select>
+    <input type="text" name="keyword" value="" placeholder="검색어를 입력하세요">
+    <input type="submit" value="검색">
+    <a th:href="@{/searchPage}">새로고침</a>
+</form>
+<br>
+
+<!-- 검색 결과 -->
+<div id="searchResult" th:classappend="${dtoList != null}">
+    <div th:if="${dtoList != null and not #lists.isEmpty(dtoList)}">
+        <table border="1">
+            <tr>
+                <th>예약번호</th>
+                <th>이름</th>
+                <th>성별</th>
+                <th>병원이름</th>
+                <th>예약날짜</th>
+                <th>예약시간</th>
+                <th>백신코드</th>
+                <th>병원지역</th>
+            </tr>
+            <tr th:each="dto: ${dtoList}" >
+                <td th:text="${dto['resv_no']}">예약번호</td>
+                <td th:text="${dto['name']}">이름</td>
+                <td th:text="${dto['gender']}">성별</td>
+                <td>
+                    <span th:if="${dto['host_code']} == 'H001'">가_병원</span>
+                    <span th:if="${dto['host_code']} == 'H002'">나_병원</span>
+                    <span th:if="${dto['host_code']} == 'H003'">다_병원</span>
+                    <span th:if="${dto['host_code']} == 'H004'">라_병원</span>
+                </td>
+                <td th:text="${dto['formatted_date']}">예약날짜</td>
+                <td th:text="${dto['formatted_time']}">예약시간</td>
+                <td>
+                    <span th:if="${dto['v_code']} == 'V001'">A백신</span>
+                    <span th:if="${dto['v_code']} == 'V002'">B백신</span>
+                    <span th:if="${dto['v_code']} == 'V003'">C백신</span>
+                </td>
+                <td>
+                    <span th:if="${dto['host_addr']} == '10'">서울</span>
+                    <span th:if="${dto['host_addr']} == '20'">대전</span>
+                    <span th:if="${dto['host_addr']} == '30'">대구</span>
+                    <span th:if="${dto['host_addr']} == '40'">광주</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 검색 결과가 없을 때만 보이는 메시지 -->
+    <div th:if="${dtoList == null or #lists.isEmpty(dtoList)} and ${param.keyword != null}">
+        <p>검색 결과가 없습니다.</p>
+    </div>
+</div>
+
+<a th:href="@{/}">메인 Page</a>
+</body>
+</html>

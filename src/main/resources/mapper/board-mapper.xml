@@ -14,4 +14,16 @@
         FROM vaccresv v LEFT JOIN hospital h ON v.host_code = h.host_code
         GROUP BY h.host_addr
     </select>
+    <select id="findByResvNo" resultType="map">
+        SELECT v.resv_no, j.name, j.jumin, v.host_code, TO_CHAR(v.resv_date, 'YYYY"년" MM"월" DD"일"') AS formatted_date,
+        TO_CHAR(v.resv_time, 'HH:MI') AS formatted_time, v.v_code, h.host_addr
+        FROM vaccresv v
+        JOIN hospital h ON v.host_code = h.host_code
+        JOIN jumin j ON v.jumin = j.jumin
+        WHERE v.resv_no = CAST(#{keyword} AS bigint);
+
+    </select>
+    <select id="findByJumin" resultType="com.example.mybatis_vaccine.dto.ReservationDTO">
+        SELECT * FROM vaccresv WHERE jumin LIKE CONCAT('%', #{keyword}, '%')
+    </select>
 </mapper>

@@ -5,6 +5,7 @@ import com.example.mybatis_vaccine.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,5 +20,19 @@ public class ReservationService {
 
     public List<Map<String,Object>> findAll() {
         return mapper.findAll();
+    }
+
+
+
+    public List<Map<String, Object>> search(String type, String keyword) {
+        List<Map<String, Object>> dtoList = new ArrayList<>();
+        switch (type){
+            case "resv_no":
+                dtoList = mapper.findByResvNo(keyword);
+                break;
+            case "jumin":
+                dtoList = mapper.findByJumin(keyword);
+        }
+        return dtoList;
     }
 }

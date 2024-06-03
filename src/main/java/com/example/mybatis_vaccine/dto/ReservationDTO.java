@@ -20,5 +20,5 @@ public class ReservationDTO {
     private String resv_date;
     private String resv_time;
     private String v_code;
-
+    private String gender;
 }

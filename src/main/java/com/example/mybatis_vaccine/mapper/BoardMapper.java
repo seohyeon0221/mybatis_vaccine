@@ -9,8 +9,14 @@ import java.util.Map;
 
 @Mapper
 public interface BoardMapper {
+
     void save(@Param("dto") ReservationDTO dto);
 
 
     List<Map<String, Object>> findAll();
+
+
+    List<Map<String, Object>> findByResvNo(@Param("keyword")String keyword);
+
+    List<Map<String, Object>> findByJumin(@Param("keyword")String keyword);
 }
